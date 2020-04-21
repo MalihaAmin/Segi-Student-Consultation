@@ -16,14 +16,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class SuLecturer extends AppCompatActivity {
+public class SuLecturer<datainsert> extends AppCompatActivity {
 private Button Continue_button;
 private Button Login_button;
-private EditText Email, Password, Confirm_Password;
+private EditText Email, Password, Confirm_Password, Name;
 private ProgressDialog loadingBar;
 
+private Lecturers lecturers;
+
 private FirebaseAuth mAuth;
+private DatabaseReference reff;
+
+private long maxid=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +42,26 @@ private FirebaseAuth mAuth;
 //initialize firebase
         mAuth = FirebaseAuth.getInstance();
 
+        reff = FirebaseDatabase.getInstance().getReference().child("Lecturers");
+
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                    maxid = dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        lecturers = new Lecturers();
+
         Continue_button = (Button)findViewById(R.id.lsu_continue_button);
         Login_button = (Button)findViewById(R.id.lsu_login_button);
+        Name = (EditText)findViewById(R.id.lsu_Name);
         Email = (EditText)findViewById(R.id.lsu_email);
         Password = (EditText)findViewById(R.id.lsu_password);
         Confirm_Password = (EditText)findViewById(R.id.lsu_confirm_password);
@@ -50,8 +78,11 @@ private FirebaseAuth mAuth;
         Continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent int5 = new Intent(SuLecturer.this,ScheduleLecturer.class);
-                //startActivity(int5);
+              lecturers.setName(Name.getText().toString().trim());
+              lecturers.setEmail(Email.getText().toString().trim());
+             // reff.push().setValue(lecturers);
+              reff.child(String.valueOf(maxid+1)).setValue(lecturers);
+              Toast.makeText(SuLecturer.this,"Data inserted successfully",Toast.LENGTH_LONG).show();
                 CreateNewAccount();
             }
         });

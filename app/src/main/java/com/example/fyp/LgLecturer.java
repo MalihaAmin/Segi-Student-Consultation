@@ -1,15 +1,15 @@
 package com.example.fyp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LgLecturer extends AppCompatActivity {
-   private Button btt1;
-   private Button btt2;
+   private Button Continue;
+   private Button SignIn;
 
 
     @Override
@@ -17,17 +17,17 @@ public class LgLecturer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lg_lecturer);
 
-        btt1 = (Button) findViewById(R.id.btt1);
-        btt2 = (Button) findViewById(R.id.btt2);
+        Continue = (Button) findViewById(R.id.llg_continue_button);
+        SignIn = (Button) findViewById(R.id.llg_SignIn);
 
-        btt1.setOnClickListener(new View.OnClickListener() {
+        Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(LgLecturer.this,SuLecturer.class);
                 startActivity(intent1);
             }
         });
-        btt2.setOnClickListener(new View.OnClickListener() {
+        SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(LgLecturer.this,ScheduleLecturer.class);

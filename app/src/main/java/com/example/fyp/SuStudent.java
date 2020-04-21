@@ -16,14 +16,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SuStudent extends AppCompatActivity {
 private Button Continue_button;
 private Button LogIn_button;
-private EditText Email, Password, Confirm_Password;
+private EditText Email, Password, Confirm_Password, Name;
 private ProgressDialog loadingBar;
 
+private Students students;
+
 private FirebaseAuth mAuth;
+private DatabaseReference reff;
+
+    private long maxid=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +43,27 @@ private FirebaseAuth mAuth;
         //initialize firebase
         mAuth = FirebaseAuth.getInstance();
 
+        reff = FirebaseDatabase.getInstance().getReference().child("Students");
+
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                    maxid = dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        students = new Students();
+
+
         Continue_button = (Button)findViewById(R.id.ssu_continue_button);
         LogIn_button = (Button)findViewById(R.id.ssu_login_button);
+        Name = (EditText)findViewById(R.id.ssu_Name);
         Email = (EditText)findViewById(R.id.ssu_email);
         Password = (EditText)findViewById(R.id.ssu_password);
         Confirm_Password = (EditText)findViewById(R.id.ssu_confirm_password);
@@ -43,8 +72,11 @@ private FirebaseAuth mAuth;
         Continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent int6 = new Intent(SuStudent.this,ScheduleStudent.class);
-                //startActivity(int6);
+                students.setName(Name.getText().toString().trim());
+                students.setEmail(Email.getText().toString().trim());
+                // reff.push().setValue(lecturers);
+                reff.child(String.valueOf(maxid+1)).setValue(students);
+                Toast.makeText(SuStudent.this,"Data inserted successfully",Toast.LENGTH_LONG).show();
                 CreateNewAccount();
             }
         });
