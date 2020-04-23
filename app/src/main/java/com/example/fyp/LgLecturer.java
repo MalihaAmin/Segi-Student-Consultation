@@ -18,7 +18,7 @@ public class LgLecturer extends AppCompatActivity {
         setContentView(R.layout.activity_lg_lecturer);
 
         Continue = (Button) findViewById(R.id.llg_continue_button);
-        SignIn = (Button) findViewById(R.id.llg_SignIn);
+        SignIn = (Button) findViewById(R.id.llg_signup);
 
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LgStudent extends AppCompatActivity {
 private Button Continue;
 private Button SignIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

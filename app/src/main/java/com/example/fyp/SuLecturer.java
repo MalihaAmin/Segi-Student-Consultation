@@ -98,7 +98,10 @@ private long maxid=0;
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(confirmPassword)) {
             Toast.makeText(this, "Please confirm your password", Toast.LENGTH_SHORT).show();
-        } else if (!password.equals(confirmPassword) ) {
+        }
+        else if (password.length() < 6){
+            Toast.makeText(this,"Password must be 6 or more digits",Toast.LENGTH_SHORT).show();
+        }else if (!password.equals(confirmPassword) ) {
             Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
         } else {
             loadingBar.setTitle("Creating New Account");
