@@ -1,11 +1,11 @@
 package com.example.fyp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Choose extends AppCompatActivity {
 private Button button2;
@@ -21,14 +21,14 @@ private Button button3;
       button2.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              Intent int1 = new Intent(Choose.this,SuLecturer.class);
+              Intent int1 = new Intent(Choose.this,LgLecturer.class);
           startActivity(int1);
           }
       });
       button3.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              Intent int2 = new Intent(Choose.this,SuStudent.class);
+              Intent int2 = new Intent(Choose.this,LgStudent.class);
               startActivity(int2);
           }
       });

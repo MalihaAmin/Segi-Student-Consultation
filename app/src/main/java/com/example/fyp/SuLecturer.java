@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SuLecturer<datainsert> extends AppCompatActivity {
 private Button Continue_button;
-private Button Login_button;
+private TextView Click;
 private EditText Email, Password, Confirm_Password, Name;
 private ProgressDialog loadingBar;
 
@@ -60,7 +61,7 @@ private long maxid=0;
         lecturers = new Lecturers();
 
         Continue_button = (Button)findViewById(R.id.lsu_continue_button);
-        Login_button = (Button)findViewById(R.id.lsu_login_button);
+        Click = (TextView)findViewById(R.id.lsu_click);
         Name = (EditText)findViewById(R.id.lsu_Name);
         Email = (EditText)findViewById(R.id.lsu_email);
         Password = (EditText)findViewById(R.id.lsu_password);
@@ -68,7 +69,7 @@ private long maxid=0;
         loadingBar = new ProgressDialog(this);
 
 
-        Login_button.setOnClickListener(new View.OnClickListener() {
+        Click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent int4 = new Intent(SuLecturer.this,LgLecturer.class);
