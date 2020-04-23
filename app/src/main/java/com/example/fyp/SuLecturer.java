@@ -31,8 +31,12 @@ private ProgressDialog loadingBar;
 
 private Lecturers lecturers;
 
+
 private FirebaseAuth mAuth;
 private DatabaseReference reff;
+
+//
+    //private Routine routines;
 
 private long maxid=0;
     @Override
@@ -44,6 +48,7 @@ private long maxid=0;
         mAuth = FirebaseAuth.getInstance();
 
         reff = FirebaseDatabase.getInstance().getReference().child("Lecturers");
+
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,6 +64,9 @@ private long maxid=0;
         });
 
         lecturers = new Lecturers();
+        //Demo
+        //routines= new Routine();
+
 
         Continue_button = (Button)findViewById(R.id.lsu_continue_button);
         Click = (TextView)findViewById(R.id.lsu_click);
@@ -81,6 +89,10 @@ private long maxid=0;
             public void onClick(View v) {
               lecturers.setName(Name.getText().toString().trim());
               lecturers.setEmail(Email.getText().toString().trim());
+              //lecturers.timeslot=routines;
+              //Demo
+                //lecturers.timeslot.setA1(true);
+
              // reff.push().setValue(lecturers);
               reff.child(String.valueOf(maxid+1)).setValue(lecturers);
               Toast.makeText(SuLecturer.this,"Data inserted successfully",Toast.LENGTH_LONG).show();

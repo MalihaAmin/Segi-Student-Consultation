@@ -56,6 +56,9 @@ public class LgLecturer extends AppCompatActivity {
                     return;
                 }
 
+
+                //End
+
                 //progressBar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
