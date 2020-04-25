@@ -1,12 +1,45 @@
 package com.example.fyp;
 
-public class Routine {
+public class TimeTable {
     private boolean d8=false;
     private boolean d9=false;
     private boolean d10=false;
     private boolean d11=false;
     private boolean d12=false;
     private boolean a1=false;
+    private boolean a2=false;
+    private boolean a3=false;
+    private boolean a4=false;
+    private String weekday;
+    private String lec_email;
+
+    public String getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(String weekday) {
+        this.weekday = weekday;
+    }
+
+    public String getLec_email() {
+        return lec_email;
+    }
+
+    public void setLec_email(String lec_email) {
+        this.lec_email = lec_email;
+    }
+
+    public TimeTable() {
+        d8=false;
+        d9=false;
+        d10=false;
+        d11=false;
+        d12=false;
+        a1=false;
+        a2=false;
+        a3=false;
+        a4=false;
+    }
 
     public boolean isD9() {
         return d9;
@@ -72,9 +105,7 @@ public class Routine {
         this.a4 = a4;
     }
 
-    private boolean a2;
-    private boolean a3;
-    private boolean a4;
+
 
     public boolean isD8() {
         return d8;

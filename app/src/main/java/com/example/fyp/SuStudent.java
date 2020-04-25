@@ -34,7 +34,7 @@ private Students students;
 private FirebaseAuth mAuth;
 private DatabaseReference reff;
 
-    private long maxid=0;
+private long maxid=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,6 @@ private DatabaseReference reff;
             public void onClick(View v) {
                 students.setName(Name.getText().toString().trim());
                 students.setEmail(Email.getText().toString().trim());
-                // reff.push().setValue(lecturers);
                 reff.child(String.valueOf(maxid+1)).setValue(students);
                 Toast.makeText(SuStudent.this,"Data inserted successfully",Toast.LENGTH_LONG).show();
                 CreateNewAccount();

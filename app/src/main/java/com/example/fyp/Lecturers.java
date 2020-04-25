@@ -3,19 +3,11 @@ package com.example.fyp;
 public class Lecturers {
     private String Name;
     private String Email;
-    //public  Routine timeslot;
-
-
 
 
     public Lecturers() {
 
-
-
-
     }
-
-
 
     public String getName() {
         return Name;
